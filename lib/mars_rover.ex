@@ -1,18 +1,12 @@
 defmodule MARS_ROVER do
-  @moduledoc """
-  Documentation for MARS_ROVER.
-  """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> MARS_ROVER.hello
-      :world
-
-  """
-  def hello do
-    :world
+  def process(received_command, current_position) do
+    case current_position do
+      %{:heading => :north} -> %{current_position | y: current_position.y+1}
+      %{:heading => :west} -> %{current_position | x: current_position.x-1}
+      %{:heading => :east} -> %{current_position | x: current_position.x+1}
+      %{:heading => :south} -> %{current_position | y: current_position.y-1}
+      _ -> current_position
+    end
   end
 end
